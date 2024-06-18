@@ -20,18 +20,18 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemVenda {
+public class ItemVendaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "id_venda")
-    private Venda venda;
+    private VendaEntity venda;
 
     @ManyToOne
     @JoinColumn(name = "id_produto")
-    private Produto produto;
+    private ProdutoEntity produto;
 
     private int quantidade;
     private BigDecimal precoUnitario;

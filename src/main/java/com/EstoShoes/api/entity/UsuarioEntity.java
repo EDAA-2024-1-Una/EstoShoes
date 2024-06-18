@@ -1,7 +1,6 @@
 package com.EstoShoes.api.entity;
 
-import java.math.BigDecimal;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,21 +12,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "produtos")
+@Table(name = "usuarios")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produto {
+public class UsuarioEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
     private String nome;
-    private String cor;
-    private int numeracao;
-    private String codigo;
-    private String imagemUrl;
-    private BigDecimal valor;
-    private int quantidadeEstoque;
-    private int quantidadeVendida;
+
+    @Column(nullable = false)
+    private String senha; 
 }

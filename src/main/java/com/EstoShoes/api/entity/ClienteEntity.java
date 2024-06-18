@@ -11,16 +11,21 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "clientes")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String email;
     private String nome;
-    private String senha; 
+    private String email;
+    private String telefone;
+    private String rua;
+    private String numero;
+    private String bairro;
+    private String cidade;
+    private String cep;
 }
