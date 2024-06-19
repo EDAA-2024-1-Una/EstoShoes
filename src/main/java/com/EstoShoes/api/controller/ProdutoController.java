@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.EstoShoes.api.dto.ProdutoDTO;
@@ -25,6 +26,20 @@ public class ProdutoController {
     @GetMapping
     public ResponseEntity<List<ProdutoDTO>> getAllProdutos() {
         List<ProdutoDTO> produtos = produtoService.listar();
+        return ResponseEntity.ok(produtos);
+    }
+
+    @GetMapping("/ordenados")
+    public ResponseEntity<List<ProdutoDTO>> listarProdutosOrdenados(
+        @RequestParam(name = "campoOrdenacao", required = false) String campoOrdenacao,
+        @RequestParam(name = "ordem", defaultValue = "crescente") String ordem
+    ) {
+        List<ProdutoDTO> produtos;
+        if (campoOrdenacao != null) {
+            produtos = produtoService.listarProdutosOrdenados(campoOrdenacao, ordem);
+        } else {
+            produtos = produtoService.listar();
+        }
         return ResponseEntity.ok(produtos);
     }
 

@@ -1,5 +1,6 @@
 package com.EstoShoes.api.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.EstoShoes.api.dto.ProdutoDTO;
 import com.EstoShoes.api.entity.ProdutoEntity;
 import com.EstoShoes.api.repository.ProdutoRepository;
+import com.EstoShoes.api.util.Ordenacao;
 
 @Service
 public class ProdutoService {
@@ -18,6 +20,35 @@ public class ProdutoService {
 
     public List<ProdutoDTO> listar() {
         return produtoRepository.findAll().stream()
+                .map(this::converteParaDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProdutoDTO> listarProdutosOrdenados(String campoOrdenacao, String ordem) {
+        List<ProdutoEntity> produtos = produtoRepository.findAll();
+
+        if ("crescente".equals(ordem) || "decrescente".equals(ordem)) {
+            Comparator<ProdutoEntity> comparador = (p1, p2) -> {
+                switch (campoOrdenacao) {
+                    case "nome":
+                        return p1.getNome().compareToIgnoreCase(p2.getNome());
+                    case "preco":
+                        return p1.getValor().compareTo(p2.getValor());
+                    case "quantidadeEstoque":
+                        return Integer.compare(p1.getQuantidadeEstoque(), p2.getQuantidadeEstoque());
+                    case "quantidadeVendida":
+                        return Integer.compare(p1.getQuantidadeVendida(), p2.getQuantidadeVendida());
+                    default:
+                        throw new IllegalArgumentException("Campo de ordenação inválido: " + campoOrdenacao);
+                }
+            };
+
+            Ordenacao.selectionSort(produtos, comparador, ordem);
+        } else {
+            produtos = produtoRepository.findAll();
+        }
+
+        return produtos.stream()
                 .map(this::converteParaDto)
                 .collect(Collectors.toList());
     }
