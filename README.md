@@ -56,28 +56,32 @@ Este é um sistema de gestão de estoque e vendas para uma loja de calçados, de
 Nos endpoints abaixo do de login, é necessário passar o token no header authorization com o token retornado pelo endpoint de login. Token vale por 20 minutos
 
 - **Login**
-POST /api/auth/login: Autenticação de usuário para obter token JWT.
+- - POST /api/auth/login: Autenticação de usuário para obter token JWT.
 <br>
+
 - **Clientes**
-POST /api/clientes: Cadastrar cliente
-GET /api/clientes: Lista todos os clientes cadastrados.
-PUT /api/clientes/{id}: Atualizar cliente
-GET /api/clientes/{id}: Buscar cliente por id.
-DELETE /api/clientes/{id}: Deletar cliente por id.
+- - POST /api/clientes: Cadastrar cliente
+- - GET /api/clientes: Lista todos os clientes cadastrados.
+- - PUT /api/clientes/{id}: Atualizar cliente
+- - GET /api/clientes/{id}: Buscar cliente por id.
+- - DELETE /api/clientes/{id}: Deletar cliente por id.
 <br>
+
 - **Produtos**
-POST /api/clientes: Cadastrar produto
-GET /api/clientes: Lista todos os produtos cadastrados.
-GET /api/clientes/produtos: Lista todos os produtos cadastrados ordenados pelo parametro de sua preferencia
-PUT /api/clientes/{id}: Atualizar produto
-GET /api/clientes/{id}: Buscar produto por id.
-DELETE /api/clientes/{id}: Deletar produto por id.
+- - POST /api/clientes: Cadastrar produto
+- - GET /api/clientes: Lista todos os produtos cadastrados.
+- - GET /api/clientes/produtos: Lista todos os produtos cadastrados ordenados pelo parametro de sua preferencia
+- - PUT /api/clientes/{id}: Atualizar produto
+- - GET /api/clientes/{id}: Buscar produto por id.
+- - DELETE /api/clientes/{id}: Deletar produto por id.
 <br>
+
 - **Vendas**
-POST /api/vendas: Cria uma nova venda.
-GET /api/vendas: Lista todas as vendas
-GET /api/vendas/{id}: Obtém detalhes de uma venda específica.
+- - POST /api/vendas: Cria uma nova venda.
+- - GET /api/vendas: Lista todas as vendas
+- - GET /api/vendas/{id}: Obtém detalhes de uma venda específica.
 <br>
+
 - **Usuarios**
-POST /api/usuarios: Cria um usuário do sistema
-GET /api/usuarios/{id}: Obtém detalhes do usuário
+- - POST /api/usuarios: Cria um usuário do sistema
+- - GET /api/usuarios/{id}: Obtém detalhes do usuário
