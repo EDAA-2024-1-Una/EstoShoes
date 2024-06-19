@@ -2,7 +2,9 @@ package com.EstoShoes.api.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,4 +43,16 @@ public class VendaEntity {
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.ALL)
+    private List<ItemVendaEntity> itensVenda;
+
+    public void setItensVenda(List<ItemVendaEntity> itensVenda) {
+        this.itensVenda = itensVenda;
+        if (itensVenda != null) {
+            for (ItemVendaEntity item : itensVenda) {
+                item.setVenda(this);
+            }
+        }
+    }
 }
