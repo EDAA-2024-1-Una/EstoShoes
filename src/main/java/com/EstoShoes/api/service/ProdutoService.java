@@ -23,8 +23,8 @@ public class ProdutoService {
     }
 
     public ProdutoDTO procurarPorId(int id) {
-        Optional<ProdutoEntity> produto = produtoRepository.findById(id);
-        return produto.map(this::converteParaDto).orElse(null);
+        ProdutoEntity produto = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrado"));
+        return converteParaDto(produto);
     }
 
     public ProdutoDTO criar(ProdutoDTO produtoDTO) {

@@ -23,8 +23,8 @@ public class ClienteService {
     }
 
     public ClienteDTO procurarPorId(int id) {
-        Optional<ClienteEntity> cliente = clienteRepository.findById(id);
-        return cliente.map(this::converteParaDto).orElse(null);
+        ClienteEntity cliente = clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        return converteParaDto(cliente);
     }
 
     public ClienteDTO criar(ClienteDTO clienteDTO) {
