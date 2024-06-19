@@ -1,7 +1,5 @@
 package com.EstoShoes.api.entity;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,5 +32,4 @@ public class ItemVendaEntity {
     private ProdutoEntity produto;
 
     private int quantidade;
-    private BigDecimal precoUnitario;
 }
